@@ -1,0 +1,41 @@
+import tkinter as tk
+from tkinter import messagebox
+
+def commande1():
+    messagebox.showinfo("Commande 1", "Vous avez sélectionné la commande 1")
+
+def commande2():
+    messagebox.showinfo("Commande 2", "Vous avez sélectionné la commande 2")
+
+def commande3():
+    messagebox.showinfo("Commande 3", "Vous avez sélectionné la commande 3")
+
+# Création de la fenêtre principale
+fenetre = tk.Tk()
+fenetre.title("Liste de Commandes")
+fenetre.geometry("300x200")
+
+# Création de la liste de commandes
+liste_commandes = tk.Listbox(fenetre)
+liste_commandes.insert(1, "Commande 1")
+liste_commandes.insert(2, "Commande 2")
+liste_commandes.insert(3, "Commande 3")
+liste_commandes.pack()
+
+# Fonction pour exécuter la commande sélectionnée
+def executer_commande(event):
+    selection = liste_commandes.curselection()
+    if selection:
+        index = selection[0]
+        if index == 0:
+            commande1()
+        elif index == 1:
+            commande2()
+        elif index == 2:
+            commande3()
+
+# Liaison de la sélection de la liste à la fonction d'exécution
+liste_commandes.bind('<<ListboxSelect>>', executer_commande)
+
+# Lancement de la boucle principale
+fenetre.mainloop()
